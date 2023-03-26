@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <style>
+        /* .element{
+            padding-right: 60px;
+            display: flex;
+        } */
+        .item{
+            display: flex;
+        }
+        .showhide{
+            height: 35px;
+            width: 100px;
+            display: none;
+            cursor: pointer;
+        }
+        .element:hover {
+            color: rgb(190, 53, 53);
+        }
+        .element:hover  .showhide {
+            display: inline-block;
+        }
+        .hover:hover {
+            color: black;
+        }
+        .myCSS {
+            width: 300px;
+            padding: 50px 0;
+            text-align: center;
+            background-color: lightblue;
+            margin-top: 20px;
+            display: none;
+            flex: 4;
+            font-size: 18px;
+            border-radius: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1 class="element " style="padding-right: 60px; display: flex;">element h1
+        <div class="item">
+            <button class="showhide" onclick="show(this)" >Show CSS</button>
+            <div class="myCSS" id="myCSS"></div>
+        </div>
+    </h1>
+    <h2 class="element " style="padding-right: 60px; display: flex;">element h2
+        <div class="item">
+            <button class="showhide" onclick="show(this)">Show CSS</button>
+            <div class="myCSS"></div>
+        </div>
+    </h2>   
+    <h3 class="element " style="padding-right: 60px; display: flex;">element h3
+        <div class="item">
+            <button class="showhide" onclick="show(this)">Show CSS</button>
+            <div class="myCSS"></div>
+        </div>
+    </h3>
+    <h4 class="element " style="padding-right: 60px; display: flex;">element h4
+        <div class="item">
+            <button class="showhide" onclick="show(this)">Show CSS</button>
+            <div class="myCSS"></div>
+        </div>
+    </h4>
+    <h5 class="element " style="padding-right: 60px; display: flex;">element h5
+        <div class="item">
+            <button class="showhide" onclick="show(this)">Show CSS</button>
+            <div class="myCSS"></div>
+        </div>
+    </h5>
+    <script>
+        function show(el){         
+			$(el).next().slideToggle();
+            $(el).parent().parent().toggleClass('hover');
+			if($(el).text() === "Show CSS"){
+				$(el).text("Close CSS");
+			}else{
+                $(el).text("Show CSS");
+			}
+
+            let content = $(el).parent().parent().attr('style');
+
+            
+            $(el).siblings().text(content);
+
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+html,body{
+    margin: 0;
+    height: 1000px;
+}
+
+.static {
+  background-color: #728869;
+  width: 100%;
+  height: 50px;
+  position:static;
+  /* mặc định ban đầu theo thứ tự*/
+}
+.relative{
+    background-color: #070606;
+    width: 100%;
+    height: 200px;
+    color: #ffff;
+    position: relative;
+    top: 20px;
+    left: 20px;
+    /* căn chỉnh vị trí dựa vào tọa độ mặc định  */
+}
+.absolute{
+    background-color: #ffff;
+    width: 200px;
+    height: 100px;
+    color: #070606;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    /* lấy thẻ cha "gần nhất" có thuộc tính position làm tọa độ để căn chỉnh */
+}
+.fixed{
+    width: 100%;
+    height: 100px;
+    background-color: #1E0ADB;
+    position: fixed;
+    top: 300px;
+    /* cố định cách top 300px - fix cứng luôn dù lăn chuột*/
+
+}
+.sticky{
+    width: 100%;
+    height: 100px;
+    background-color: #BA0909;
+    margin-top:150px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 100px; 
+    /* cách top 100px thì fixed dừng lại không trượt nữa */
+}
+
+.flexbox {
+    margin-top: 250px;
+    height: 300px;
+    background-color: #f1e0e0;
+}
+
+.container {
+    display: flex;  /*  đưa lên cùng 1 hàng */
+    justify-content: space-evenly;  
+    /* 
+    space-around; cách đều nhưng có khoảng trống 2 bên lề
+    space-between; cách đều ở giữa nhưng sát 2 bên lề
+    space-evenly; cách đều cả 2 bên lề hay giữa các item đều = nhau 
+    */
+    flex-wrap: wrap; 
+}
+.box {
+    width: 150px;
+    line-height: 150px;
+    text-align: center;
+    background-color: #6fdb0a;
+    font-size: 40px;
+    font-weight: 700;
+    color: white;
+    margin-top: 20px;
+}
+
+.media_query {
+    margin-top: 200px;
+    height: 300px;
+    background-color: #f1e0e0;
+}
+
+.pc, .tablet, .mobile { 
+    text-align: center;
+    color: #BA0909;
+    display: none;
+}
+/* PC */
+@media (min-width: 1024px) {
+    .pc {
+        display: block;
+    }
+}
+
+/* Tablet */
+@media (min-width: 740px) and (max-width: 1023px){
+    .tablet {
+        display: block;
+    }
+}
+
+/* Mobile */
+@media (max-width: 739px) {
+    .mobile {
+        display: block;
+    }
+}

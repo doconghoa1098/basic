@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO APP</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color: #eee;">
+    <section class="vh-100" >
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-9 col-xl-7">
+              <div class="card rounded-3">
+                <div class="card-body p-4">     
+                  <h3 class="text-center my-3 pb-3">TO DO APP</h3>      
+                    <form action="#" method="POST" onsubmit="addTask()" class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
+                    <div class="col-6">
+                        <input type="text" id="task" class="form-control" placeholder="Enter a task here" />
+                    </div>
+                    <div class="col-4">
+                      <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                  </form>
+                  <table class="table mb-4">
+                    <thead>
+                      <tr>
+                        <th class="col-2">No.</th>
+                        <th class="col-6">Todo</th>
+                        <th class="col-4">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody> 
+                    </tbody>
+                  </table>
+      
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous" ></script>
+      <script>
+        function getAll() {
+            $.ajax({
+                url : 'https://624f9ae4bdda77e9a9c0423e.mockapi.io/api/v1/admin',
+                type: 'GET',
+                success: function (data) {
+                  var content = ``;
+                  data.reverse().forEach(function (el) {
+                  content += `<tr>
+                                        <td>${el.id}</td>
+                                        <td id="${el.id}" style="display: flex">${el.name}</td>
+                                        <td>
+                                          <button type="submit" class="btn btn-danger" onclick="editTask(${el.id},'${el.name}')">Edit</button>
+                                          <button type="submit" class="btn btn-warning ms-1" onclick="deleteTask(${el.id})">Delete</button>
+                                        </td>
+                                    </tr>`;
+                  });
+                document.querySelector("tbody").innerHTML = content;
+              }
+            });
+        }
+        getAll();
+
+        // Thêm task 
+        function addTask(){
+          event.preventDefault();
+          var obj = {
+            name: $('#task').val()
+          };
+          $.ajax({
+            url: "https://624f9ae4bdda77e9a9c0423e.mockapi.io/api/v1/admin",
+            type: "POST",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            data: JSON.stringify(obj),
+            success: function(){
+              getAll();
+            }
+          });
+			  };
+      // edit task
+      function editTask(id, name){
+				document.getElementById(`${id}`).innerHTML = `<input type="text" name="name" id="nameEdit" value="${name}" /> 
+                                                     <button class="btn btn-primary" onclick="update(${id})">Update</button>`;
+			}
+
+			function update(id){
+				event.preventDefault();
+				var obj = {
+						name: $('#nameEdit').val(),
+					};
+          console.log(obj);
+				$.ajax({
+					url: `https://624f9ae4bdda77e9a9c0423e.mockapi.io/api/v1/admin/${id}`,
+					type: "PUT",
+					headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          data: JSON.stringify(obj),
+					success: function(){
+						getAll();
+					}
+				});
+			};
+
+      // delete task
+      function deleteTask(id){
+				event.preventDefault();
+				$.ajax({
+					url: `https://624f9ae4bdda77e9a9c0423e.mockapi.io/api/v1/admin/${id}`,
+					type: "DELETE",
+					success: function(){
+						getAll();
+					}
+				});
+			}
+      </script>
+</body>
+</html>

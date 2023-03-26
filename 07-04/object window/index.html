@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+  </head>
+  <body>
+    <h1>Object Window</h1>
+    <ul>
+      <li>Là một cửa sổ đang mở trong trình duyệt</li>
+      <li>Có thể tác động đến của sổ trình duyệt</li>
+    </ul>
+
+    <div id="demo"></div>
+    <button onclick="openW()">Mở cửa sổ</button>
+    <button onclick="closeW()">Đóng cửa sổ</button>
+    <button onclick="moveW()">Di chuyển cửa sổ</button>
+    <button onclick="resizeW()">Thay đổi kích cỡ cửa sổ</button>
+
+    <script type="text/javascript">
+      var width = window.innerWidth;
+      var height = window.innerHeight;
+      var text = `Trình duyệt có chiều rộng là: ${width} px <br/>
+                  Trình duyệt có chiều cao là: ${height} px`;
+      document.getElementById("demo").innerHTML = text;
+
+      var myWindow;
+      function openW() {
+        myWindow = window.open(
+          "",
+          "",
+          "width=300,height=200"
+        );
+      }
+
+      function closeW() {
+        myWindow.close();
+      }
+
+      function moveW() {
+        myWindow.moveTo(200, 100);
+        myWindow.focus();
+      }
+
+      function resizeW() {
+        myWindow.resizeTo(500, 300);
+        myWindow.focus();
+      }
+    </script>
+  </body>
+</html>

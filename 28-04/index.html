@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try-catch form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main class="login-form">
+        <div class="cotainer">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">FORM VALIDATE TRY-CATCH</div>
+                            <div class="card-body">
+                                <form action="#" method="POST" id="validate-form">
+                                    <div class="form-group row">
+                                        <label for="id-student" class="col-md-4 col-form-label text-md-right">Mã sinh viên</label>
+                                        <div class="col-md-6">
+                                            <input type="text" id="id-student" class="form-control" name="idstudent" autofocus>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="full-name" class="col-md-4 col-form-label text-md-right">Họ tên</label>
+                                        <div class="col-md-6">
+                                            <input type="text" id="full-name" class="form-control" name="full-name" autofocus>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="birth-date" class="col-md-4 col-form-label text-md-right">Ngày sinh</label>
+                                        <div class="col-md-6">
+                                            <input type="text" id="birth-date" class="form-control" name="birth-date" autofocus>   
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 offset-md-4">
+                                        <button type="submit" class="btn btn-primary"> Save </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        document.querySelector('#validate-form').addEventListener('submit', (e) =>{
+
+            e.preventDefault();
+
+            let idStudent = document.querySelector('#id-student').value;
+            let fullName = document.querySelector('#full-name').value;
+            let birthDate = document.querySelector('#birth-date').value;
+
+            var regexIDStudent = /[a-zA-Z0-9]/;
+            var regexBirthDate = /^[0-9]{4}\/(0[1-9]|1[0-2])\/(0[1-9]|[1-2][0-9]|3[0-1])$/;
+
+            try {
+                if (idStudent == "")  throw "Mã sinh viên không được để trống";
+
+                if (regexIDStudent.test(idStudent) == false)  throw "Mã sinh viên chứa không phải kí tự [a-z] [A-Z] [0-9]";
+
+                if (fullName == "") throw "Họ & tên không được để trống";
+
+                if (birthDate == "") throw "Ngày sinh không được để trống";
+
+                if (regexBirthDate.test(birthDate) == false)  throw "Ngày sinh không đúng định dạng yyyy/mm/dd";
+
+                alert("OK");
+
+            } catch (e) {
+                alert(e);
+            }  
+                
+        });
+    </script>
+</body>
+</html>

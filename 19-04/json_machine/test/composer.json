@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "psr-4": {
+            "JSON\\": "src/"
+        }
+    },
+    "require": {
+        "halaxa/json-machine": "^1.1"
+    }
+}

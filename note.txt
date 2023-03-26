@@ -1,0 +1,8 @@
+If( $a = ) =>  
+‘0’ => true
+1 =>true
+False => false
+[] => true
+Null => false
+-1 => false
+0 => false

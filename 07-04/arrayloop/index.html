@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>BT-07-04</title>
+  </head>
+  <body>
+    <h1>Array Loop</h1>
+    <ul>
+      <li>forEach() : lặp qua từng phần tử thực của mảng</li>
+      <li>
+        filter() : duyệt từng phần tử mảng rồi tìm, và trả về tất cả phần tử tìm
+        được
+      </li>
+      <li>
+        map() : Trả về 1 mảng mới có số lượng phần tử giống mảng cũ, có thể thêm
+        hoặc sửa các phần tử trong mảng mới trả về.
+      </li>
+    </ul>
+
+    <script>
+        var courses = [
+            {
+                id: 1,
+                name: "HTML, CSS, JS"
+            },
+            {
+                id: 2,
+                name: "PHP_Final"
+            },
+            {
+                id: 3,
+                name: "PHP_Famework"
+            }
+        ];
+
+        console.log("foreach()");
+        // ForEach() : lặp qua từng phần tử thực của mảng
+        courses.forEach(function (course, index) {
+        console.log(index, course);
+        });
+
+        console.log("filter()");
+        // Filter() : duyệt từng ptu mảng rồi tìm,
+        // và trả về tất cả ptu tìm được
+        var filterCourses = courses.filter(function (course, index) {
+        return course.id > 1;
+        });
+        console.log(filterCourses);
+
+        console.log("map()");
+        // map() : Trả về 1 mảng mới có số lượng ptu giống mảng cũ,
+        // có thể thêm hoặc sửa các ptu trong mảng mới trả về.
+        var mapCourses = courses.map(function (course, index) {
+        return {
+            id: course.id,
+            name: `Khoa hoc: ${course.name}`
+        };
+        });
+        console.log(mapCourses);
+
+    </script>
+  </body>
+</html>
